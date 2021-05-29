@@ -7,21 +7,14 @@ import java.util.TreeSet;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class AnalyticsCounter2 {
+public class AnalyticsCounter2  {
 	
 	public static void main(String args[]) throws Exception {
 		// first get input
 		
 		ReadSymptomDataFromFile listSymptome= new ReadSymptomDataFromFile ("Project02Eclipse/symptoms.txt");
-		List<String> list= new ArrayList<String>();
-		list= listSymptome.GetSymptoms();
-		List<String> listOccurence= new ArrayList<String>();
-		int i=0;
-		for (String e:list) {
-			System.out.println(e + " " + Collections.frequency(list, e));
-			listOccurence.add(i, e + " " + Collections.frequency(list, e)+ "\n");
-			i++;
-		}
+		
+		List<String> listOccurence= new ArrayList<String> (Occurence.Count ( listSymptome));
 		
 		
 		
@@ -36,4 +29,6 @@ public class AnalyticsCounter2 {
 		}
 		writer.close();
 	}
+
+	
 }
