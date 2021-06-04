@@ -1,34 +1,36 @@
 package com.hemebiotech.analytics;
 
-
-import java.io.FileWriter;
 import java.util.List;
 import java.util.TreeSet;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 
-public class AnalyticsCounter2  {
-	
-	public static void main(String args[]) throws Exception {
-		// first get input
-		
-		ReadSymptomDataFromFile listSymptome= new ReadSymptomDataFromFile ("Project02Eclipse/symptoms.txt");
-		
-		List<String> listOccurence= new ArrayList<String> (Occurence.Count ( listSymptome));
-		
-		
-		
-		TreeSet<String> listOccurenceWithoutDoubleTried= new TreeSet<String>(listOccurence);
-		
-		
-		
-		// next generate output
-		FileWriter writer = new FileWriter ("result.out");
-		for (String e:listOccurenceWithoutDoubleTried) {
-		writer.write(e);
-		}
-		writer.close();
+/**
+ * 
+ * @author cedrom
+ *
+ */
+public class AnalyticsCounter2 {
+
+	/**
+	 * 
+	 * @param args Not used
+	 * @throws IOException management of the exception, if the file does not exist or on a read error
+	 */
+	public static void main(String args[]) throws IOException {
+
+		// create an instance to read the file
+		ReadSymptomDataFromFile listSymptome = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
+
+		// count the occurrences of each symptom
+		List<String> listOccurence = new ArrayList<String>(Occurence.Count(listSymptome));
+
+		// remove duplicates and classify in alphabetical order
+		TreeSet<String> listOccurenceWithoutDoubleTried = new TreeSet<String>(listOccurence);
+
+		// generates a symptom file with their occurrence
+		WriteResult.writeResult(listOccurenceWithoutDoubleTried);
+
 	}
 
-	
 }
