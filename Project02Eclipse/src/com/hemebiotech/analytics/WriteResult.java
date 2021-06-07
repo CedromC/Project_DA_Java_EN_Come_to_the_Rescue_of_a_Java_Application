@@ -9,7 +9,7 @@ import java.util.TreeSet;
  * @author cedrom
  *
  */
-public class WriteResult {
+public class WriteResult implements IWriteResult {
 	
 	/**
 	 * 

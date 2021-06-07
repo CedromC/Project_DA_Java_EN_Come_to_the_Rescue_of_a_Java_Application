@@ -23,7 +23,7 @@ public class AnalyticsCounter2 {
 		ReadSymptomDataFromFile listSymptome = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
 
 		// count the occurrences of each symptom
-		List<String> listOccurence = new ArrayList<String>(Occurence.Count(listSymptome));
+		List<String> listOccurence = new ArrayList<String>(Occurence.count(listSymptome));
 
 		// remove duplicates and classify in alphabetical order
 		TreeSet<String> listOccurenceWithoutDoubleTried = new TreeSet<String>(listOccurence);

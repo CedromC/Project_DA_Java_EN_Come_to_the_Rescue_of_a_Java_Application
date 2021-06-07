@@ -9,7 +9,7 @@ import java.util.List;
  * @author cedrom
  *
  */
-public class Occurence {
+public class Occurence implements IOccurence  {
 
 	/**
 	 * 
@@ -17,7 +17,8 @@ public class Occurence {
 	 * @return returns the list of symptoms with their occurrences. Contains
 	 *         duplicates
 	 */
-	public static List<String> Count(ReadSymptomDataFromFile listSymptome) {
+	
+	public static  List<String> count(ReadSymptomDataFromFile listSymptome)  {
 		
 		//create list from symptom file
 		List<String> list = new ArrayList<String>();
