@@ -1,7 +1,7 @@
 package com.hemebiotech.analytics;
 
 import java.io.IOException;
-import java.util.TreeSet;
+import java.util.TreeMap;
 
 /**
  * 
@@ -16,7 +16,6 @@ public interface IWriteResult {
 	 * 
 	 * @param listOccurenceWithoutDoubleTried  receives as parameter a treeset containing the list of symptoms with occurrences and without duplicates
 	 */
-	public static void writeResult(TreeSet<String> listOccurenceWithoutDoubleTried) {
-	}
+	public void writeResult(TreeMap<String,Long> listOccurenceWithoutDoubleTried) throws IOException;
 
 }

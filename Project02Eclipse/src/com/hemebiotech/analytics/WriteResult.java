@@ -1,8 +1,11 @@
 package com.hemebiotech.analytics;
 
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.TreeSet;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 /**
  * 
@@ -18,14 +21,23 @@ public class WriteResult implements IWriteResult {
 
 	 * @throws IOException management of a write error
 	 */
-	public static void writeResult(TreeSet<String> listOccurenceWithoutDoubleTried) throws IOException {
+	@Override
+	public  void writeResult(TreeMap<String,Long> listOccurenceWithoutDoubleTried) throws IOException  {
 		
-		FileWriter writer = new FileWriter("result.out");
+		/*FileWriter writer = new FileWriter("result.out");
 		
 		//scan each element of the ordered symptom list and their occurrence to write them to the output file
 		for (String e : listOccurenceWithoutDoubleTried) {
 			writer.write(e);
 		}
-		writer.close();
+		writer.close();*/
+		
+		List<String> result = listOccurenceWithoutDoubleTried
+								.entrySet()
+								.stream()
+								.map(entry -> entry.getKey() + ": " + entry.getValue())
+								.collect(Collectors.toList());
+		Files.write(Paths.get("result.out"), result);
+		
 	}
 }

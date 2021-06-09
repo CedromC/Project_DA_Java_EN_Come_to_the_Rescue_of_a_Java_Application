@@ -1,6 +1,6 @@
 package com.hemebiotech.analytics;
 
-import java.util.List;
+import java.util.TreeMap;
 
 /**
  * 
@@ -16,9 +16,6 @@ public interface IOccurence {
 	 *         duplicates
 	 *
 	 */
-	public static List<String> count(ReadSymptomDataFromFile listSymptome) {
-		
-		return null;
-	}
+	public  TreeMap<String,Long> count(ReadSymptomDataFromFile listSymptome); 
 
 }

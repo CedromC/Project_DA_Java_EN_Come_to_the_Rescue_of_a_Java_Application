@@ -1,9 +1,7 @@
 package com.hemebiotech.analytics;
 
-import java.util.List;
-import java.util.TreeSet;
+import java.util.TreeMap;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * 
@@ -23,14 +21,16 @@ public class AnalyticsCounter2 {
 		ReadSymptomDataFromFile listSymptome = new ReadSymptomDataFromFile("Project02Eclipse/symptoms.txt");
 
 		// count the occurrences of each symptom
-		List<String> listOccurence = new ArrayList<String>(Occurence.count(listSymptome));
+		Occurence occurence = new Occurence();
+		TreeMap<String,Long> listOccurence = occurence.count(listSymptome);
 
 		// remove duplicates and classify in alphabetical order
-		TreeSet<String> listOccurenceWithoutDoubleTried = new TreeSet<String>(listOccurence);
+		//TreeSet<String> listOccurenceWithoutDoubleTried = new TreeSet<String>(listOccurence);
 
 		// generates a symptom file with their occurrence
-		WriteResult.writeResult(listOccurenceWithoutDoubleTried);
-
+		//WriteResult.writeResult(listOccurenceWithoutDoubleTried);
+		WriteResult writeResult= new WriteResult();
+		writeResult.writeResult(listOccurence);
 	}
 
 }

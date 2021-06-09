@@ -1,8 +1,11 @@
 package com.hemebiotech.analytics;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * 
@@ -17,23 +20,32 @@ public class Occurence implements IOccurence  {
 	 * @return returns the list of symptoms with their occurrences. Contains
 	 *         duplicates
 	 */
-	
-	public static  List<String> count(ReadSymptomDataFromFile listSymptome)  {
+	@Override
+	public   TreeMap<String,Long> count(ReadSymptomDataFromFile listSymptome)  {
 		
-		//create list from symptom file
+		//Create list from symptom file
 		List<String> list = new ArrayList<String>();
-		list = listSymptome.getSymptoms();
+			list = listSymptome.getSymptoms();
 		
-		List<String> listOccurence = new ArrayList<String>();
+		//Create a stream for collect symptoms in a Map with occurences and without duplicates
+		Map<String,Long> listOccurence = list
+											.stream()
+											.collect(Collectors.groupingBy(Function.identity(), Collectors.counting() ) ) ;
+											
+		//Create TreeMap to sort listOccurence
+		TreeMap<String,Long> listOccurenceTried = new TreeMap<String,Long>();
+			listOccurenceTried.putAll(listOccurence);
+		
+		//List<String> listOccurence = new ArrayList<String>();
 		
 		//scan each element of the list and calculate the number of occurrences
-		int i = 0;
+	/*	int i = 0;
 		for (String e : list) {
 			System.out.println(e + " " + Collections.frequency(list, e));
 			listOccurence.add(i, e + " " + Collections.frequency(list, e) + "\n");
 			i++;
-		}
+		} */
 		
-		return listOccurence;
+		return listOccurenceTried;
 	}
 }
