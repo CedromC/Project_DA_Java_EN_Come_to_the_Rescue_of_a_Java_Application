@@ -12,40 +12,30 @@ import java.util.stream.Collectors;
  * @author cedrom
  *
  */
-public class Occurence implements IOccurence  {
+public class Occurence implements IOccurence {
 
 	/**
 	 * 
 	 * @param listSymptome receive the list of symptoms to count the occurrences
-	 * @return returns the list of symptoms with their occurrences. Contains
-	 *         duplicates
+	 * @return returns the list of symptoms with their occurrences.
+	 * 
 	 */
 	@Override
-	public   TreeMap<String,Long> count(ReadSymptomDataFromFile listSymptome)  {
-		
-		//Create list from symptom file
+	public TreeMap<String, Long> count(ReadSymptomDataFromFile listSymptome) {
+
+		// Create list from symptom file
 		List<String> list = new ArrayList<String>();
-			list = listSymptome.getSymptoms();
-		
-		//Create a stream for collect symptoms in a Map with occurences and without duplicates
-		Map<String,Long> listOccurence = list
-											.stream()
-											.collect(Collectors.groupingBy(Function.identity(), Collectors.counting() ) ) ;
-											
-		//Create TreeMap to sort listOccurence
-		TreeMap<String,Long> listOccurenceTried = new TreeMap<String,Long>();
-			listOccurenceTried.putAll(listOccurence);
-		
-		//List<String> listOccurence = new ArrayList<String>();
-		
-		//scan each element of the list and calculate the number of occurrences
-	/*	int i = 0;
-		for (String e : list) {
-			System.out.println(e + " " + Collections.frequency(list, e));
-			listOccurence.add(i, e + " " + Collections.frequency(list, e) + "\n");
-			i++;
-		} */
-		
+		list = listSymptome.getSymptoms();
+
+		// Create a stream for collect symptoms in a Map with occurences and without
+		// duplicates
+		Map<String, Long> listOccurence = list.stream()
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+		// Create TreeMap to sort listOccurence
+		TreeMap<String, Long> listOccurenceTried = new TreeMap<String, Long>();
+		listOccurenceTried.putAll(listOccurence);
+
 		return listOccurenceTried;
 	}
 }
